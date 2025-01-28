@@ -16,7 +16,7 @@ app.use(express.json());
 
 
 
-// Middleware example
+// Global Middleware example
 app.use((req, res, next) => {
     console.log('This is a Genral middleware function');
     next(); // Call next() to pass control to the next middleware or route handler
@@ -33,8 +33,8 @@ app.get('/hello2', (req, res) => {
     `);
 });
 
-
-app.use((req, res,next) => {
+//spesiell middleware for /hello
+app.use('/hello',(req, res,next) => {
     console.log('This is a for /hello middleware function 2');
     next();
 
@@ -51,6 +51,7 @@ app.get('/hello', (req, res) => {
 
   });
 
+  //no middleware for this api except the global middleware
   app.post('/data', (req, res) => {
     // Access the POST data via req.body
     console.log(req.body);
